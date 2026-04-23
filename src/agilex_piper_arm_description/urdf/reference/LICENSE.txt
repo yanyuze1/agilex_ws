@@ -1,0 +1,19 @@
+Copyright 2025
+
+The URDF model in this package is derived from the official Agilex Robotics repository:
+https://github.com/agilexrobotics/piper_ros
+
+The original files were provided by Agilex Robotics for their Piper robotic arm.
+The URDF and associated mesh files may have undergone modifications to adapt them
+for specific use cases in this project.
+
+Any modifications to the original files are subject to the license terms of this
+project, while the original content remains under the license specified in the
+source repository.
+
+For more information about the Piper robotic arm, please visit:
+https://www.agilexrobotics.com/
+
+Note: This file only specifies the origin of the URDF model and does not modify
+the original license of the source code or meshes. Please refer to the original
+repository for their exact licensing terms.

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<robot name="agilex_piper_arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Include the arm macro -->
+  <xacro:include filename="$(find agilex_piper_arm_description)/urdf/agilex_piper_arm_macro.xacro" />
+
+  <!-- World link for fixing robot to ground -->
+  <link name="world"/>
+
+  <!-- Instantiate the arm -->
+  <xacro:agilex_piper_arm prefix="" parent="world">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:agilex_piper_arm>
+
+</robot>

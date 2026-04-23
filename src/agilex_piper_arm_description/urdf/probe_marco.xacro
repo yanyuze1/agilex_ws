@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Define the macro for the Agilex Piper gripper -->
+  <xacro:macro name="probe_tool" params="prefix parent *origin">
+    <xacro:property name="tcp_offset" value="0.04" />
+
+     <!-- Joint to attach the gripper to parent link -->
+    <joint name="${prefix}probe_tool_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}" />
+      <child link="${prefix}tool_base" />
+    </joint>
+
+    <!-- Tool Base Link -->
+    <link name="${prefix}tool_base">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.02" />
+        <inertia ixx="0.00000372" ixy="-0.00000000" ixz="-0.00000000" iyy="0.00000372" iyz="0.00000000" izz="0.00000533" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://agilex_piper_arm_description/meshes/probe_tool.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://agilex_piper_arm_description/meshes/probe_tool.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <!--  Tool Center Point (TCP) joint -->
+    <joint name="${prefix}tcp_joint" type="fixed">
+      <origin xyz="0 0 ${tcp_offset}" rpy="0 0 0" />
+      <parent link="${prefix}tool_base" />
+      <child link="${prefix}tcp" />
+    </joint>
+
+    <!-- Tool Center Point (TCP) link -->
+    <link name="${prefix}tcp">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.001" />
+        <inertia ixx="0.000001" ixy="0" ixz="0"
+          iyy="0.000001" iyz="0" izz="0.000001" />
+      </inertial>
+    </link>
+  </xacro:macro>
+
+</robot>

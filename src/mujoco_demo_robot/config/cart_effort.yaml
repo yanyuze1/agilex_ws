@@ -1,0 +1,21 @@
+mujoco_sim_ros2_node:
+  ros__parameters:
+    model_package: mujoco_ros2_control_demos
+    model_file: 'mujoco_models/test_cart.xml'
+    physics_plugins:
+      - 'mujoco_ros2_control::MujocoRos2ControlPlugin'
+
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    effort_controller:
+      type: effort_controllers/JointGroupEffortController
+
+effort_controller:
+  ros__parameters:
+    joints:
+      - slider_to_cart

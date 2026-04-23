@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<robot name="agilex_piper_arm_gripper" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Load arguments -->
+  <xacro:arg name="prefix" default=""/>
+
+  <!-- Include the arm description -->
+  <xacro:include filename="$(find agilex_piper_arm_description)/urdf/agilex_piper_arm_macro.xacro"/>
+
+  <!-- Include the gripper description -->
+  <xacro:include filename="$(find agilex_piper_arm_description)/urdf/agilex_piper_gripper_macro.xacro"/>
+
+  <!-- Include MuJoCo ros2_control configuration -->
+  <xacro:include filename="$(find agilex_piper_mujoco)/urdf/agilex_piper.mj_ros2_control.xacro"/>
+
+  <!-- World link (for fixed mounting) -->
+  <link name="world"/>
+
+  <!-- Mount the arm to world -->
+  <xacro:agilex_piper_arm prefix="$(arg prefix)" parent="world">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:agilex_piper_arm>
+
+  <!-- Mount the gripper to the arm's tool0 link -->
+  <xacro:agilex_piper_gripper prefix="$(arg prefix)" parent="$(arg prefix)tool0">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:agilex_piper_gripper>
+
+  <!-- Add MuJoCo ros2_control -->
+  <xacro:agilex_piper_mujoco_ros2_control
+    name="agilex_piper_mujoco"
+    include_gripper="true"
+    prefix="$(arg prefix)"/>
+
+</robot>

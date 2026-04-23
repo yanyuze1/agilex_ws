@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Define the macro for the Agilex Piper gripper -->
+  <xacro:macro name="agilex_piper_gripper" params="prefix parent *origin">
+
+    <!-- Properties for joint limits -->
+    <xacro:property name="gripper_stroke" value="0.035" />
+    <xacro:property name="gripper_effort" value="10" />
+    <xacro:property name="gripper_velocity" value="1" />
+    <xacro:property name="tcp_offset" value="0.1358" />
+
+    <!-- Joint to attach the gripper to parent link -->
+    <joint name="${prefix}gripper_base_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${prefix}gripper_base"/>
+    </joint>
+
+    <!-- Gripper Base Link -->
+    <link name="${prefix}gripper_base">
+      <inertial>
+        <origin xyz="-0.000183807162235591 8.05033155577911E-05 0.0321436689908876" rpy="0 0 0" />
+        <mass value="0.45" />
+        <inertia ixx="0.00092934" ixy="0.00000034" ixz="-0.00000738"
+                 iyy="0.00071447" iyz="0.00000005" izz="0.00039442" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/gripper_base.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/gripper_base.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Left Gripper Finger (Link 7) -->
+    <link name="${prefix}link7">
+      <inertial>
+        <origin xyz="0.00065123185041968 -0.0491929869131989 0.00972258769184025" rpy="0 0 0" />
+        <mass value="0.025" />
+        <inertia ixx="0.00007371" ixy="-0.00000113" ixz="0.00000021"
+                 iyy="-0.00000113" iyz="-0.00001372" izz="0.0000747" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/link7.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/link7.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Joint 7 - Left Gripper Finger -->
+    <joint name="${prefix}joint7" type="prismatic">
+      <origin xyz="0 0 0.1358" rpy="1.5708 0 0" />
+      <parent link="${prefix}gripper_base" />
+      <child link="${prefix}link7" />
+      <axis xyz="0 0 1" />
+      <limit lower="0" upper="${gripper_stroke}"
+             effort="${gripper_effort}" velocity="${gripper_velocity}" />
+    </joint>
+
+    <!-- Right Gripper Finger (Link 8) -->
+    <link name="${prefix}link8">
+      <inertial>
+        <origin xyz="0.000651231850419722 -0.0491929869131991 0.00972258769184024" rpy="0 0 0" />
+        <mass value="0.025" />
+        <inertia ixx="0.00007371" ixy="-0.00000113" ixz="0.00000021"
+                 iyy="-0.00000113" iyz="-0.00001372" izz="0.0000747" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/link8.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/link8.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Joint 8 - Right Gripper Finger -->
+    <joint name="${prefix}joint8" type="prismatic">
+      <origin xyz="0 0 0.1358" rpy="1.5708 0 -3.1416" />
+      <parent link="${prefix}gripper_base" />
+      <child link="${prefix}link8" />
+      <axis xyz="0 0 -1" />
+      <limit lower="-${gripper_stroke}" upper="0"
+             effort="${gripper_effort}" velocity="${gripper_velocity}" />
+    </joint>
+
+    <!--  Tool Center Point (TCP) joint -->
+    <joint name="${prefix}tcp_joint" type="fixed">
+      <origin xyz="0 0 ${tcp_offset}" rpy="0 0 0"/>
+      <parent link="${prefix}gripper_base"/>
+      <child link="${prefix}tcp"/>
+    </joint>
+
+    <!-- Tool Center Point (TCP) link -->
+    <link name="${prefix}tcp">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.001" />
+        <inertia ixx="0.000001" ixy="0" ixz="0"
+                 iyy="0.000001" iyz="0" izz="0.000001" />
+      </inertial>
+    </link>
+
+  </xacro:macro>
+
+</robot>

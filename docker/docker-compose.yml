@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  mujoco_agilex:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+    image: mujoco_agilex
+    
+    container_name: mujoco_agilex
+
+    stdin_open: true
+    tty: true
+
+    environment:
+      - DISPLAY=${DISPLAY}
+      - USER_ID=${USER_ID:-1000}
+      - GROUP_ID=${GROUP_ID:-1000}
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - QT_X11_NO_MITSHM=1
+    
+    devices:
+      - /dev/snd:/dev/snd
+      - /dev/dri:/dev/dri
+    
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ${HOME}:/home/ROS2
+    
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+    network_mode: host

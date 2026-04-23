@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!--
+    ROS 2 Control macro for Agilex Piper arm with MuJoCo simulation
+    This macro adds ros2_control tags to the robot description for MuJoCo simulation
+    Uses MujocoSystem hardware plugin for physics-based simulation
+  -->
+
+  <!-- Default PID parameters -->
+  <xacro:property name="default_position_kp" value="3500" />
+  <xacro:property name="default_position_ki" value="10" />
+  <xacro:property name="default_position_kd" value="10" />
+  <xacro:property name="default_position_i_max" value="1000" />
+
+  <!-- Common macro for joint PID parameters -->
+  <xacro:macro name="joint_pid_params" params="kp:=${default_position_kp} ki:=${default_position_ki} kd:=${default_position_kd} i_max:=${default_position_i_max}">
+    <param name="position_kp">${kp}</param>
+    <param name="position_ki">${ki}</param>
+    <param name="position_kd">${kd}</param>
+    <param name="position_i_max">${i_max}</param>
+    <command_interface name="position_pid"/>
+  </xacro:macro>
+
+  <xacro:macro name="agilex_piper_mujoco_ros2_control" params="
+    name:=agilex_piper_mujoco
+    include_gripper:=true
+    prefix:=''
+    ">
+
+    <ros2_control name="${prefix}${name}" type="system">
+
+      <!-- Hardware interface plugin for MuJoCo simulation -->
+      <hardware>
+        <plugin>mujoco_ros2_control/MujocoSystem</plugin>
+      </hardware>
+
+      <!-- Joint definitions -->
+      <joint name="${prefix}joint1">
+        <xacro:joint_pid_params />
+        <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+      </joint>
+
+      <joint name="${prefix}joint2">
+        <xacro:joint_pid_params />
+        <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+      </joint>
+
+      <joint name="${prefix}joint3">
+        <xacro:joint_pid_params />
+        <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+      </joint>
+
+      <joint name="${prefix}joint4">
+        <xacro:joint_pid_params />
+        <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+      </joint>
+
+      <joint name="${prefix}joint5">
+        <xacro:joint_pid_params />
+        <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+      </joint>
+
+      <joint name="${prefix}joint6">
+        <xacro:joint_pid_params />
+        <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+      </joint>
+
+      <!-- Gripper definitions (conditional) -->
+      <xacro:if value="${include_gripper}">
+        <joint name="${prefix}joint7">
+          <xacro:joint_pid_params />
+          <state_interface name="position">
+            <param name="initial_value">0.0</param>
+          </state_interface>
+          <state_interface name="velocity">
+            <param name="initial_value">0.0</param>
+          </state_interface>
+        </joint>
+
+        <joint name="${prefix}joint8">
+          <xacro:joint_pid_params />
+          <state_interface name="position">
+            <param name="initial_value">0.0</param>
+          </state_interface>
+          <state_interface name="velocity">
+            <param name="initial_value">0.0</param>
+          </state_interface>
+        </joint>
+      </xacro:if>
+
+    </ros2_control>
+
+  </xacro:macro>
+
+</robot>

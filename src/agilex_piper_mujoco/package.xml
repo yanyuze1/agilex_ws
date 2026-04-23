@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>agilex_piper_mujoco</name>
+  <version>0.0.1</version>
+  <description>MuJoCo simulation package for Agilex Piper robotic arm with ros2_control integration</description>
+  <maintainer email="baoan.du.xj@renesas.com">Baoan Du</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- Core dependencies -->
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+
+  <!-- ROS 2 Control dependencies -->
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>ros2_control</exec_depend>
+  <exec_depend>ros2_controllers</exec_depend>
+  <exec_depend>position_controllers</exec_depend>
+  <exec_depend>joint_state_broadcaster</exec_depend>
+  <exec_depend>joint_trajectory_controller</exec_depend>
+  <exec_depend>cartesian_motion_controller</exec_depend>
+
+  <!-- ROS 2 Control message dependencies -->
+  <exec_depend>control_msgs</exec_depend>
+  <exec_depend>trajectory_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+
+  <!-- MuJoCo simulation dependencies -->
+  <exec_depend>mujoco_sim_ros2</exec_depend>
+  <exec_depend>mujoco_ros2_control</exec_depend>
+
+  <!-- Robot description dependency -->
+  <exec_depend>agilex_piper_arm_description</exec_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

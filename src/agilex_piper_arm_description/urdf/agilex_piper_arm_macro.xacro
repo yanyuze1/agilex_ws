@@ -1,0 +1,286 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Define the macro for the Agilex Piper arm -->
+  <xacro:macro name="agilex_piper_arm" params="prefix parent *origin">
+
+    <!-- Properties for joint limits -->
+    <xacro:property name="joint1_lower_limit" value="-2.618" />
+    <xacro:property name="joint1_upper_limit" value="2.618" />
+    <xacro:property name="joint2_lower_limit" value="0" />
+    <xacro:property name="joint2_upper_limit" value="3.14" />
+    <xacro:property name="joint3_lower_limit" value="-2.967" />
+    <xacro:property name="joint3_upper_limit" value="0" />
+    <xacro:property name="joint4_lower_limit" value="-1.745" />
+    <xacro:property name="joint4_upper_limit" value="1.745" />
+    <xacro:property name="joint5_lower_limit" value="-1.22" />
+    <xacro:property name="joint5_upper_limit" value="1.22" />
+    <xacro:property name="joint6_lower_limit" value="-2.0944" />
+    <xacro:property name="joint6_upper_limit" value="2.0944" />
+
+    <!-- Common properties -->
+    <xacro:property name="effort_limit" value="100" />
+    <xacro:property name="velocity_limit" value="5" />
+
+    <!-- Joint to attach the arm to parent link -->
+    <joint name="${prefix}base_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${prefix}base_link"/>
+    </joint>
+
+    <!-- Base Link -->
+    <link name="${prefix}base_link">
+      <inertial>
+        <origin xyz="-0.00473641164191482 2.56829134630247E-05 0.041451518036016" rpy="0 0 0" />
+        <mass value="1.02" />
+        <inertia ixx="0.00267433" ixy="-0.00000073" ixz="-0.00017389"
+                 iyy="0.00282612" iyz="0.0000004" izz="0.00089624" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/base_link.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/base_link.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Link 1 -->
+    <link name="${prefix}link1">
+      <inertial>
+        <origin xyz="0.00032 -0.00041 -0.00348" rpy="0 0 0" />
+        <mass value="0.71" />
+        <inertia ixx="0.00050027" ixy="0.00000078" ixz="0.00000626"
+                 iyy="0.00040879" iyz="0.00000462" izz="0.00045802" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/link1.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/link1.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Joint 1 -->
+    <joint name="${prefix}joint1" type="revolute">
+      <origin xyz="0 0 0.123" rpy="0 0 0" />
+      <parent link="${prefix}base_link" />
+      <child link="${prefix}link1" />
+      <axis xyz="0 0 1" />
+      <limit lower="${joint1_lower_limit}" upper="${joint1_upper_limit}"
+             effort="${effort_limit}" velocity="${velocity_limit}" />
+    </joint>
+
+    <!-- Link 2 -->
+    <link name="${prefix}link2">
+      <inertial>
+        <origin xyz="0.21852 -0.00861 0.00126" rpy="0 0 0" />
+        <mass value="1.16" />
+        <inertia ixx="0.00111915" ixy="0.00182916" ixz="0.00019233"
+                 iyy="0.06763251" iyz="0.00000767" izz="0.067559" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/link2.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/link2.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Joint 2 -->
+    <joint name="${prefix}joint2" type="revolute">
+      <origin xyz="0 0 0" rpy="1.5708 -0.1359 -3.1416" />
+      <parent link="${prefix}link1" />
+      <child link="${prefix}link2" />
+      <axis xyz="0 0 1" />
+      <limit lower="${joint2_lower_limit}" upper="${joint2_upper_limit}"
+             effort="${effort_limit}" velocity="${velocity_limit}" />
+    </joint>
+
+    <!-- Link 3 -->
+    <link name="${prefix}link3">
+      <inertial>
+        <origin xyz="-0.01999 -0.14808 -0.00053" rpy="0 0 0" />
+        <mass value="0.5" />
+        <inertia ixx="0.01347608" ixy="0.00161034" ixz="0.00000066"
+                 iyy="0.00046377" iyz="0.00000162" izz="0.01363321" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/link3.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/link3.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Joint 3 -->
+    <joint name="${prefix}joint3" type="revolute">
+      <origin xyz="0.28503 0 0" rpy="0 0 -1.7939" />
+      <parent link="${prefix}link2" />
+      <child link="${prefix}link3" />
+      <axis xyz="0 0 1" />
+      <limit lower="${joint3_lower_limit}" upper="${joint3_upper_limit}"
+             effort="${effort_limit}" velocity="${velocity_limit}" />
+    </joint>
+
+    <!-- Link 4 -->
+    <link name="${prefix}link4">
+      <inertial>
+        <origin xyz="0.00013 -0.00076 -0.00394" rpy="0 0 0" />
+        <mass value="0.38" />
+        <inertia ixx="0.00017844" ixy="0.00000062" ixz="0.00000067"
+                 iyy="0.00018914" iyz="0.00000408" izz="0.00014613" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/link4.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/link4.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Joint 4 -->
+    <joint name="${prefix}joint4" type="revolute">
+      <origin xyz="-0.021984 -0.25075 0" rpy="1.5708 0 0" />
+      <parent link="${prefix}link3" />
+      <child link="${prefix}link4" />
+      <axis xyz="0 0 1" />
+      <limit lower="${joint4_lower_limit}" upper="${joint4_upper_limit}"
+             effort="${effort_limit}" velocity="${velocity_limit}" />
+    </joint>
+
+    <!-- Link 5 -->
+    <link name="${prefix}link5">
+      <inertial>
+        <origin xyz="0.00018 -0.06104 -0.00227" rpy="0 0 0" />
+        <mass value="0.39" />
+        <inertia ixx="0.00172318" ixy="0.00000259" ixz="0.00000010"
+                 iyy="0.00017936" iyz="0.00000990" izz="0.00171172" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/link5.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/link5.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Joint 5 -->
+    <joint name="${prefix}joint5" type="revolute">
+      <origin xyz="0 0 0" rpy="-1.5708 0 0" />
+      <parent link="${prefix}link4" />
+      <child link="${prefix}link5" />
+      <axis xyz="0 0 1" />
+      <limit lower="${joint5_lower_limit}" upper="${joint5_upper_limit}"
+             effort="${effort_limit}" velocity="${velocity_limit}" />
+    </joint>
+
+    <!-- Link 6 (End Effector) -->
+    <link name="${prefix}link6">
+      <inertial>
+        <origin xyz="-0.00003 0.00006 0.04618" rpy="0 0 0" />
+        <mass value="0.46" />
+        <inertia ixx="0.00152112" ixy="0.00000202" ixz="0.00000261"
+                 iyy="0.00138626" iyz="0.00000002" izz="0.00031152" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/link6.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://agilex_piper_arm_description/meshes/link6.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Joint 6 -->
+    <joint name="${prefix}joint6" type="revolute">
+      <origin xyz="8.8259E-05 -0.091 0" rpy="1.5708 0 0" />
+      <parent link="${prefix}link5" />
+      <child link="${prefix}link6" />
+      <axis xyz="0 0 1" />
+      <limit lower="${joint6_lower_limit}" upper="${joint6_upper_limit}"
+             effort="${effort_limit}" velocity="${velocity_limit}" />
+    </joint>
+
+    <!-- Tool0 Link - Standard tool mounting point -->
+    <link name="${prefix}tool0">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.001" />
+        <inertia ixx="0.000001" ixy="0" ixz="0"
+                 iyy="0.000001" iyz="0" izz="0.000001" />
+      </inertial>
+    </link>
+
+    <!-- Tool0 Joint -->
+    <joint name="${prefix}tool0_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="${prefix}link6" />
+      <child link="${prefix}tool0" />
+    </joint>
+
+  </xacro:macro>
+
+</robot>
