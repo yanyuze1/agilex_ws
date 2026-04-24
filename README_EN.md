@@ -53,7 +53,9 @@ docker compose down                                     # Stop and clean up cont
 ### 2.2 Build
 
 ```bash
+cd agilex_ws
 colcon build --symlink-install
+source install/setup.bash
 ```
 
 ### 2.3 Joint Position Mode

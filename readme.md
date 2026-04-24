@@ -53,7 +53,9 @@ docker compose down                                     # 停止并清理容器
 ### 2.2 编译
 
 ```bash
+cd agilex_ws
 colcon build --symlink-install
+source install/setup.bash
 ```
 
 ### 2.3 机械臂位置模式运行
