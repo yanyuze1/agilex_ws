@@ -19,20 +19,20 @@
     </tr>
   </table>
   <p>
-    <strong><kbd>中文</kbd></strong>
-    <a href="./README_EN.md"><kbd>English</kbd></a>
+    <a href="./readme.md"><kbd>中文</kbd></a>
+    <strong><kbd>English</kbd></strong>
   </p>
 </div>
 
-## 1. 项目描述
+## 1. Project Description
 
-本项目是 Agilex 机械臂系列的 MuJoCo 仿真仓库，会随着系列项目推进持续更新。当前我也在并行推进其他长期机器人项目，因此更新节奏未必完全稳定，但这个仓库会持续维护、迭代，并逐步补充更多功能模块。
+This repository hosts the MuJoCo simulation workspace for the Agilex robotic arm series. It will continue to evolve as the overall project moves forward. I am also maintaining several other long-term robotics projects in parallel, so the update pace may vary, but this repository will keep being maintained and expanded with more modules over time.
 
-## 2. 项目使用
+## 2. Usage
 
-### 2.1 Docker 使用
+### 2.1 Docker Workflow
 
-推荐以工作空间的 `src` 目录为基础，通过 Docker 构建项目环境，这样可以尽量避免依赖配置问题。使用方式如下：
+It is recommended to build the project around the workspace `src` directory and use Docker first, because it helps avoid most dependency and environment issues. A typical setup looks like this:
 
 ```bash
 mkdir agilex_ws && cd agilex_ws
@@ -40,52 +40,52 @@ git clone https://github.com/yanyuze1/agilex_ws.git
 cd docker
 ```
 
-Docker 常用命令：
+Common Docker commands:
 
 ```bash
-docker compose up -d --build --remove-orphans           # 构建容器
-docker compose up -d mujoco_agilex                      # 启动容器，-d 表示不进入终端
-docker compose ps                                       # 查看容器状态
-docker compose exec mujoco_agilex bash                  # 进入容器
-docker compose down                                     # 停止并清理容器
+docker compose up -d --build --remove-orphans           # Build containers
+docker compose up -d mujoco_agilex                      # Start the container in detached mode
+docker compose ps                                       # Check container status
+docker compose exec mujoco_agilex bash                  # Enter the container
+docker compose down                                     # Stop and clean up containers
 ```
 
-### 2.2 编译
+### 2.2 Build
 
 ```bash
 colcon build --symlink-install
 ```
 
-### 2.3 机械臂位置模式运行
+### 2.3 Joint Position Mode
 
 ```bash
-# 启动
+# Launch
 ros2 launch agilex_piper_mujoco bringup_mujoco_joint_position_controller.launch.py
 
-# 发布关节位置
+# Publish joint targets
 ros2 topic pub --once /agilex_piper_joint_position_controller/commands \
   std_msgs/msg/Float64MultiArray "{data: [0.7, 0.0, 0.0, 0.0, 0.0, 0.0]}"
 ```
 
-### 2.4 夹爪控制
+### 2.4 Gripper Control
 
 ```bash
-# 开夹爪
+# Open gripper
 ros2 topic pub --once /agilex_piper_gripper_position_controller/commands \
   std_msgs/msg/Float64MultiArray "{data: [0.035, -0.035]}"
 
-# 关闭夹爪
+# Close gripper
 ros2 topic pub --once /agilex_piper_gripper_position_controller/commands \
   std_msgs/msg/Float64MultiArray "{data: [0.0, 0.0]}"
 ```
 
-### 2.5 机械臂笛卡尔模式运行
+### 2.5 Cartesian Control Mode
 
 ```bash
-# 启动
+# Launch
 ros2 launch agilex_piper_mujoco bringup_mujoco_cartesian_motion_controller.launch.py
 
-# 发布末端位置
+# Publish the end-effector target pose
 ros2 topic pub --once /agilex_piper_cartesian_motion_controller/target_frame \
   geometry_msgs/msg/PoseStamped "{
     header: {frame_id: 'base_link'},
@@ -96,31 +96,30 @@ ros2 topic pub --once /agilex_piper_cartesian_motion_controller/target_frame \
   }"
 ```
 
-### 2.6 状态检测
+### 2.6 State Monitoring
 
 ```bash
 ros2 topic echo /agilex_piper_cartesian_motion_controller/current_pose
 ```
 
-## 3. 当前效果
+## 3. Current Demo
 
 ![MuJoCo simulation demo](./images/2026-04-23-18-14-56.gif)
 
 ## 4. Todo
 
-- [ √ ] 基础环境构建，支持 Piper 机械臂
-- [ ] 添加 Agilex Nero 机械臂支持
-- [ ] 添加视觉模块
-- [ ] 完成控制器模块替换
-- [ ] 推进强化学习部署测试
-- [ ] 推进各类 VA 的部署测试
-- [ ] 推进各类 VLA 的部署测试
+- [ √ ] Build the base environment with Piper arm support
+- [ ] Add Agilex NERO arm support
+- [ ] Add a vision module
+- [ ] Replace the current controller stack
+- [ ] Advance deployment testing for various VA workflows
+- [ ] Advance deployment testing for various VLA workflows
 
-## 5. 后言
+## 5. Closing Notes
 
-本次更新先到这里。后续内容会继续在这个仓库中维护，也会逐步加入更多有意思的功能和模块。感谢所有提供基础框架和思路的开源项目作者，我们也是站在巨人的肩膀上把这个项目一点点做起来的。
+That is the current update for now. More content will continue to land in this repository, and more interesting features and modules will be added over time. Thanks to the open-source projects and contributors whose groundwork and ideas made this project possible.
 
-## 6. 参考项目
+## 6. Reference Projects
 
 - https://github.com/renesas-rdk/agilex_piper_mujoco
 - https://github.com/renesas-rdk/agilex_piper_arm_description
