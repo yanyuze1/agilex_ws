@@ -108,7 +108,7 @@ ros2 topic echo /agilex_piper_cartesian_motion_controller/current_pose
 
 ## 4. Todo
 
-- [ √ ] Build the base environment with Piper arm support
+- [x] Build the base environment with Piper arm support
 - [ ] Add Agilex NERO arm support
 - [ ] Add a vision module
 - [ ] Replace the current controller stack

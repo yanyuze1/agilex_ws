@@ -108,7 +108,7 @@ ros2 topic echo /agilex_piper_cartesian_motion_controller/current_pose
 
 ## 4. Todo
 
-- [ √ ] 基础环境构建，支持 Piper 机械臂
+- [x] 基础环境构建，支持 Piper 机械臂
 - [ ] 添加 Agilex Nero 机械臂支持
 - [ ] 添加视觉模块
 - [ ] 完成控制器模块替换
