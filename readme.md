@@ -35,9 +35,9 @@
 推荐以工作空间的 `src` 目录为基础，通过 Docker 构建项目环境，这样可以尽量避免依赖配置问题。使用方式如下：
 
 ```bash
-mkdir agilex_ws && cd agilex_ws
+mkdir agilex && cd agilex
 git clone https://github.com/yanyuze1/agilex_ws.git
-cd docker
+cd agilex_ws/docker
 ```
 
 Docker 常用命令：
