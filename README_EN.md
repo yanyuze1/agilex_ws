@@ -51,6 +51,7 @@ docker compose down                                     # Stop and clean up cont
 ```
 
 ### 2.2 Build
+Compilation will take a long time, please be patient.
 
 ```bash
 cd agilex_ws

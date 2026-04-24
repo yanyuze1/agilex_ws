@@ -51,6 +51,7 @@ docker compose down                                     # 停止并清理容器
 ```
 
 ### 2.2 编译
+编译时间会比较长，请耐心等待
 
 ```bash
 cd agilex_ws
