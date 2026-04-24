@@ -112,6 +112,8 @@ ros2 topic echo /agilex_piper_cartesian_motion_controller/current_pose
 - [ ] Add Agilex NERO arm support
 - [ ] Add a vision module
 - [ ] Replace the current controller stack
+- [ ] Advance deployment testing for reinforcement learning
+- [ ] Advance deployment testing for visual grasping
 - [ ] Advance deployment testing for various VA workflows
 - [ ] Advance deployment testing for various VLA workflows
 

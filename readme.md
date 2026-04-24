@@ -113,6 +113,7 @@ ros2 topic echo /agilex_piper_cartesian_motion_controller/current_pose
 - [ ] 添加视觉模块
 - [ ] 完成控制器模块替换
 - [ ] 推进强化学习部署测试
+- [ ] 推进视觉抓取测试
 - [ ] 推进各类 VA 的部署测试
 - [ ] 推进各类 VLA 的部署测试
 
