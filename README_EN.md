@@ -4,7 +4,7 @@
     <tr>
       <td align="center">
         <a href="https://global.agilex.ai/products/piper">
-          <img src="./src/agilex_piper_mujoco/models/agilex_piper/piper.png" alt="AgileX PiPER" width="280" />
+          <img src="./images/piper.png" alt="AgileX PiPER" width="280" />
         </a>
         <br />
         <sub><strong>AgileX PiPER</strong></sub>
