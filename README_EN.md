@@ -35,9 +35,9 @@ This repository hosts the MuJoCo simulation workspace for the Agilex robotic arm
 It is recommended to build the project around the workspace `src` directory and use Docker first, because it helps avoid most dependency and environment issues. A typical setup looks like this:
 
 ```bash
-mkdir agilex_ws && cd agilex_ws
+mkdir agilex && cd agilex
 git clone https://github.com/yanyuze1/agilex_ws.git
-cd docker
+cd agilex_ws/docker
 ```
 
 Common Docker commands:
@@ -109,22 +109,35 @@ ros2 topic echo /agilex_piper_cartesian_motion_controller/current_pose
 
 ![MuJoCo simulation demo](./images/2026-04-23-18-14-56.gif)
 
-## 4. Todo
+## 4. Issues and Solutions
+
+If files in `agilex_ws/src/agilex_piper_mujoco/models/demo/assets` or `agilex_ws/src/agilex_piper_mujoco/models/agilex_piper/assets` cannot be opened properly, go to the corresponding path, extract `assets.zip`, and replace the original `assets` folder.
+
+![alt text](images/image3.png)
+
+![alt text](images/image4.png)
+
+## 5. Todo
 
 - [x] Build the base environment with Piper arm support
+- [x] Refactor the base environment and provide a cleaner simulation environment foundation
 - [ ] Add Agilex NERO arm support
-- [ ] Add a vision module
-- [ ] Replace the current controller stack
+- [ ] Complete ROS 2 function module control
+- [ ] Add Agilex SDK control integration
 - [ ] Advance deployment testing for reinforcement learning
 - [ ] Advance deployment testing for visual grasping
 - [ ] Advance deployment testing for various VA workflows
 - [ ] Advance deployment testing for various VLA workflows
 
-## 5. Closing Notes
+## 6. Updates
+
+- A cleaner simulation environment foundation: [agilex_arm_mujoco](https://github.com/yanyuze1/agilex_arm_mujoco)
+
+## 7. Closing Notes
 
 That is the current update for now. More content will continue to land in this repository, and more interesting features and modules will be added over time. Thanks to the open-source projects and contributors whose groundwork and ideas made this project possible.
 
-## 6. Reference Projects
+## 8. Reference Projects
 
 - https://github.com/renesas-rdk/agilex_piper_mujoco
 - https://github.com/renesas-rdk/agilex_piper_arm_description
