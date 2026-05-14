@@ -110,7 +110,7 @@ ros2 topic echo /agilex_piper_cartesian_motion_controller/current_pose
 ![MuJoCo simulation demo](./images/2026-04-23-18-14-56.gif)
 
 ## 4. 问题与解决
-若遇到agilex_ws/src/agilex_piper_mujoco/models/demo/assets和agilex_ws/src/agilex_piper_mujoco/models/agilex_piper/assets中的文件无法正常打开，可到对应文件下将压缩文件assets.zip进行解压，并替换掉原文件夹assets。
+若遇到agilex_ws/src/agilex_piper_mujoco/models/demo/assets和agilex_ws/src/agilex_piper_mujoco/models/agilex_piper/assets中的文件无法正常打开，可到对应文件路径下将压缩文件assets.zip进行解压，并替换掉原文件夹assets。
 
 ![alt text](images/image3.png)
 
@@ -119,7 +119,7 @@ ros2 topic echo /agilex_piper_cartesian_motion_controller/current_pose
 ## 5. Todo
 
 - [x] 基础环境构建，支持 Piper 机械臂
-- [ ] 对基础环境进行重构，提供一个更简洁的仿真环境基座
+- [X] 对基础环境进行重构，提供一个更简洁的仿真环境基座
 - [ ] 添加 Agilex Nero 机械臂支持
 - [ ] 完成ros2功能模块控制
 - [ ] 添加agilex sdk控制集成
@@ -128,11 +128,14 @@ ros2 topic echo /agilex_piper_cartesian_motion_controller/current_pose
 - [ ] 推进各类 VA 的部署测试
 - [ ] 推进各类 VLA 的部署测试
 
-## 6. 后言
+## 6. 更新
+- 一个更简洁的仿真环境基座：[agilex_arm_mujoco](https://github.com/yanyuze1/agilex_arm_mujoco)
+
+## 7. 后言
 
 本次更新先到这里。后续内容会继续在这个仓库中维护，也会逐步加入更多有意思的功能和模块。感谢所有提供基础框架和思路的开源项目作者，我们也是站在巨人的肩膀上把这个项目一点点做起来的。
 
-## 7. 参考项目
+## 8. 参考项目
 
 - https://github.com/renesas-rdk/agilex_piper_mujoco
 - https://github.com/renesas-rdk/agilex_piper_arm_description
