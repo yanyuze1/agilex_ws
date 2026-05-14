@@ -76,7 +76,8 @@ def generate_launch_description():
         cmd=[
             agilex_mujoco_exec,
             '-r', 'piper',
-            '-s', mujoco_model_file,
+            # '-s', mujoco_model_file,
+            '-s', 'piper_slope_demo.xml',
             '-p', 'ros2_control',
             '--ros-args',
             '--params-file', config_file,

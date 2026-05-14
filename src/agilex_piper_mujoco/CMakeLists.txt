@@ -14,14 +14,14 @@ install(
   DESTINATION share/${PROJECT_NAME}/urdf
 )
 
-# Install MuJoCo model files
-install(
-  DIRECTORY models/
-  DESTINATION share/${PROJECT_NAME}/models
-  PATTERN "*.md" EXCLUDE
-  PATTERN "CHANGELOG.md" EXCLUDE
-  PATTERN "README.md" EXCLUDE
-)
+# # Install MuJoCo model files
+# install(
+#   DIRECTORY models/
+#   DESTINATION share/${PROJECT_NAME}/models
+#   PATTERN "*.md" EXCLUDE
+#   PATTERN "CHANGELOG.md" EXCLUDE
+#   PATTERN "README.md" EXCLUDE
+# )
 
 # Install launch files
 install(
