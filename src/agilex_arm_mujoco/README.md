@@ -1,4 +1,4 @@
-# agilex_piper_mujoco
+# agilex_arm_mujoco
 
 MuJoCo simulation package for the Agilex Piper robotic arm with `ros2_control` integration.
 
@@ -22,7 +22,7 @@ This package provides a complete simulation environment for the Agilex Piper 6-D
 
 Launch simulation:
 ```bash
-ros2 launch agilex_piper_mujoco bringup_mujoco_joint_position_controller.launch.py
+ros2 launch agilex_arm_mujoco bringup_mujoco_joint_position_controller.launch.py
 ```
 
 Control arm joints:
@@ -51,7 +51,7 @@ ros2 topic pub --once /agilex_piper_gripper_position_controller/commands \
 
 Launch simulation:
 ```bash
-ros2 launch agilex_piper_mujoco bringup_mujoco_joint_trajectory_controller.launch.py
+ros2 launch agilex_arm_mujoco bringup_mujoco_joint_trajectory_controller.launch.py
 ```
 
 Send trajectory via action:
@@ -64,7 +64,7 @@ ros2 action send_goal /agilex_piper_joint_trajectory_controller/follow_joint_tra
 
 Launch simulation:
 ```bash
-ros2 launch agilex_piper_mujoco bringup_mujoco_cartesian_motion_controller.launch.py
+ros2 launch agilex_arm_mujoco bringup_mujoco_cartesian_motion_controller.launch.py
 ```
 
 Send Cartesian pose:

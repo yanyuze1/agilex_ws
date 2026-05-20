@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<robot name="nero" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find agilex_nero_arm_description)/urdf/agilex_nero_arm.urdf"/>
+  <xacro:include filename="$(find agilex_arm_mujoco)/urdf/agilex_nero.mj_ros2_control.xacro"/>
+
+  <xacro:agilex_nero_mujoco_ros2_control
+    name="agilex_nero_mujoco"
+    include_gripper="true"
+    prefix=""/>
+</robot>
