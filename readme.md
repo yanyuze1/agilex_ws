@@ -112,7 +112,7 @@ ros2 topic echo /agilex_piper_cartesian_motion_controller/current_pose
 ## 4. Todo
 
 - [x] 基础环境构建，支持 Piper 机械臂
-- [ ] 对基础环境进行重构，提供一个更简洁的仿真环境基座
+- [x] 对基础环境进行重构，提供一个更简洁的仿真环境基座
 - [ ] 添加 Agilex Nero 机械臂支持
 - [ ] 完成ros2功能模块控制
 - [ ] 添加agilex sdk控制集成
@@ -123,7 +123,7 @@ ros2 topic echo /agilex_piper_cartesian_motion_controller/current_pose
 
 ## 5. 后言
 
-本次更新先到这里。后续内容会继续在这个仓库中维护，也会逐步加入更多有意思的功能和模块。感谢所有提供基础框架和思路的开源项目作者，我们也是站在巨人的肩膀上把这个项目一点点做起来的。
+本次更新先到这里。后续内容会继续在这个仓库中维护，也会逐步加入更多有意思的功能和模块。感谢所有提供基础框架和思路的开源项目作者，我们也是站在巨人的肩膀上把这个项目一点点做起来的。简洁的仿真环境基座链接：[agilex arm仿真基座](https://github.com/yanyuze1/agilex_arm_mujoco/tree/dev),当前项目仓库是仿真基座的ROS2测试仓库，在后期会缓慢重构和完善作为基座的功能测试仓库。
 
 ## 6. 参考项目
 

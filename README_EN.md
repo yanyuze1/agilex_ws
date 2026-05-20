@@ -35,9 +35,9 @@ This repository hosts the MuJoCo simulation workspace for the Agilex robotic arm
 It is recommended to build the project around the workspace `src` directory and use Docker first, because it helps avoid most dependency and environment issues. A typical setup looks like this:
 
 ```bash
-mkdir agilex_ws && cd agilex_ws
+mkdir agilex && cd agilex
 git clone https://github.com/yanyuze1/agilex_ws.git
-cd docker
+cd agilex_ws/docker
 ```
 
 Common Docker commands:
@@ -112,9 +112,10 @@ ros2 topic echo /agilex_piper_cartesian_motion_controller/current_pose
 ## 4. Todo
 
 - [x] Build the base environment with Piper arm support
-- [ ] Add Agilex NERO arm support
-- [ ] Add a vision module
-- [ ] Replace the current controller stack
+- [x] Refactor the base environment to provide a cleaner simulation base
+- [ ] Add AgileX NERO arm support
+- [ ] Complete ROS 2 function module control
+- [ ] Add AgileX SDK control integration
 - [ ] Advance deployment testing for reinforcement learning
 - [ ] Advance deployment testing for visual grasping
 - [ ] Advance deployment testing for various VA workflows
@@ -122,7 +123,7 @@ ros2 topic echo /agilex_piper_cartesian_motion_controller/current_pose
 
 ## 5. Closing Notes
 
-That is the current update for now. More content will continue to land in this repository, and more interesting features and modules will be added over time. Thanks to the open-source projects and contributors whose groundwork and ideas made this project possible.
+That is the current update for now. More content will continue to be maintained in this repository, and more interesting features and modules will be added over time. Thanks to the open-source projects and contributors whose groundwork and ideas made this project possible. Concise simulation base link: [agilex_arm_mujoco dev branch](https://github.com/yanyuze1/agilex_arm_mujoco/tree/dev).
 
 ## 6. Reference Projects
 
