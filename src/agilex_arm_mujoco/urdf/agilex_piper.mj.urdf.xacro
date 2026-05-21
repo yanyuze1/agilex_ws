@@ -11,7 +11,7 @@
   <xacro:include filename="$(find agilex_piper_arm_description)/urdf/agilex_piper_gripper_macro.xacro"/>
 
   <!-- Include MuJoCo ros2_control configuration -->
-  <xacro:include filename="$(find agilex_piper_mujoco)/urdf/agilex_piper.mj_ros2_control.xacro"/>
+  <xacro:include filename="$(find agilex_arm_mujoco)/urdf/agilex_piper.mj_ros2_control.xacro"/>
 
   <!-- World link (for fixed mounting) -->
   <link name="world"/>

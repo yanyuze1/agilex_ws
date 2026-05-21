@@ -12,16 +12,16 @@ controller_manager:
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-    agilex_nero_joint_position_controller:
+    agilex_arm_joint_position_controller:
       type: position_controllers/JointGroupPositionController
 
-    agilex_nero_gripper_position_controller:
+    agilex_arm_gripper_position_controller:
       type: position_controllers/JointGroupPositionController
 
-    agilex_nero_joint_trajectory_controller:
+    agilex_arm_joint_trajectory_controller:
       type: joint_trajectory_controller/JointTrajectoryController
 
-    agilex_nero_cartesian_motion_controller:
+    agilex_arm_cartesian_motion_controller:
       type: cartesian_motion_controller/CartesianMotionController
 
 joint_state_broadcaster:
@@ -38,7 +38,7 @@ joint_state_broadcaster:
       - gripper_joint1  # Left gripper
       - gripper_joint2  # Right gripper
 
-agilex_nero_joint_position_controller:
+agilex_arm_joint_position_controller:
   ros__parameters:
     joints:
       - joint1  # Base rotation
@@ -58,7 +58,7 @@ agilex_nero_joint_position_controller:
       - position
       - velocity
 
-agilex_nero_gripper_position_controller:
+agilex_arm_gripper_position_controller:
   ros__parameters:
     joints:
       - gripper_joint1  # Left gripper finger
@@ -71,7 +71,7 @@ agilex_nero_gripper_position_controller:
       - position
       - velocity
 
-agilex_nero_joint_trajectory_controller:
+agilex_arm_joint_trajectory_controller:
   ros__parameters:
     joints:
       - joint1  # Base rotation
@@ -131,7 +131,7 @@ agilex_nero_joint_trajectory_controller:
     open_loop_control: false
     allow_nonzero_velocity_at_trajectory_end: false
 
-agilex_nero_cartesian_motion_controller:
+agilex_arm_cartesian_motion_controller:
   ros__parameters:
     end_effector_link: "tcp"     # End-effector frame
     robot_base_link: "base_link"   # Robot base frame

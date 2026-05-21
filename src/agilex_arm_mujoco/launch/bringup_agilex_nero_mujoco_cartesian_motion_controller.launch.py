@@ -55,7 +55,7 @@ def generate_launch_description():
         'agilex_nero_mujoco_controller.yaml',
     ])
 
-    cartesian_controller_name = 'agilex_nero_cartesian_motion_controller'
+    cartesian_controller_name = 'agilex_arm_cartesian_motion_controller'
     cartesian_controller_robot_description_file = (
         _write_cartesian_controller_robot_description_file(
             cartesian_controller_name,
@@ -97,7 +97,7 @@ def generate_launch_description():
         ],
     )
 
-    agilex_nero_cartesian_motion_controller = Node(
+    agilex_arm_cartesian_motion_controller = Node(
         package='controller_manager',
         executable='spawner',
         name='cartesian_motion_controller_spawner',
@@ -111,13 +111,13 @@ def generate_launch_description():
         ],
     )
 
-    agilex_nero_gripper_position_controller = Node(
+    agilex_arm_gripper_position_controller = Node(
         package='controller_manager',
         executable='spawner',
         name='gripper_controller_spawner',
         output='screen',
         arguments=[
-            'agilex_nero_gripper_position_controller',
+            'agilex_arm_gripper_position_controller',
             '--controller-manager', '/controller_manager',
             '--controller-manager-timeout', '60',
         ],
@@ -142,13 +142,13 @@ def generate_launch_description():
         RegisterEventHandler(
             event_handler=OnProcessExit(
                 target_action=joint_state_broadcaster,
-                on_exit=[agilex_nero_cartesian_motion_controller],
+                on_exit=[agilex_arm_cartesian_motion_controller],
             )
         ),
         RegisterEventHandler(
             event_handler=OnProcessExit(
-                target_action=agilex_nero_cartesian_motion_controller,
-                on_exit=[agilex_nero_gripper_position_controller],
+                target_action=agilex_arm_cartesian_motion_controller,
+                on_exit=[agilex_arm_gripper_position_controller],
             )
         ),
     ])
